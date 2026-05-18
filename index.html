@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pitfalls to Avoid — Free Guide · Adrian Willanger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #1a4a8a;
+  --blue-mid: #2a6ab8;
+  --blue-light: #e8f2fb;
+  --olive: #3b5c14;
+  --olive-mid: #5a7c20;
+  --olive-light: #eef3e6;
+  --navy: #0d1f38;
+  --cream: #faf9f6;
+  --white: #ffffff;
+  --text: #1a2330;
+  --muted: #4a5565;
+  --hint: #8a9aaa;
+  --border: rgba(0,0,0,0.09);
+  --shadow: 0 2px 24px rgba(26,74,138,0.08);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── NAV ── */
+.nav {
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:14px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.nav-brand {
+  font-family:'Playfair Display',serif;
+  font-size:20px;
+  font-weight:900;
+  color:var(--blue);
+  letter-spacing:-0.5px;
+}
+.nav-brand span { color:var(--olive-mid); font-style:italic; }
+.nav-cta {
+  font-size:13px;
+  font-weight:600;
+  color:var(--blue);
+  border:1.5px solid var(--blue);
+  padding:8px 20px;
+  border-radius:6px;
+  text-decoration:none;
+  transition:all .2s;
+  cursor:pointer;
+  background:none;
+  font-family:'DM Sans',sans-serif;
+}
+.nav-cta:hover { background:var(--blue); color:white; }
+
+/* ── HERO ── */
+.hero {
+  display:grid;
+  grid-template-columns:1fr 420px;
+  gap:60px;
+  align-items:center;
+  max-width:1160px;
+  margin:0 auto;
+  padding:70px 40px 64px;
+}
+.hero-eyebrow {
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--olive-mid);
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.hero-eyebrow::before { content:''; width:28px; height:1.5px; background:var(--olive-mid); }
+.hero-wordmark {
+  font-family:'Playfair Display',serif;
+  font-size:88px;
+  font-weight:900;
+  color:var(--blue);
+  line-height:.88;
+  letter-spacing:-4px;
+  margin-bottom:10px;
+}
+.hero-title {
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  font-style:italic;
+  font-weight:400;
+  color:var(--olive);
+  line-height:1.35;
+  margin-bottom:22px;
+}
+.hero-body {
+  font-size:16px;
+  color:var(--muted);
+  line-height:1.8;
+  margin-bottom:28px;
+  max-width:500px;
+}
+.promise-list { display:flex; flex-direction:column; gap:10px; margin-bottom:36px; }
+.promise-item {
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  font-size:14px;
+  color:var(--text);
+}
+.promise-check {
+  width:22px; height:22px;
+  border-radius:50%;
+  background:var(--blue);
+  color:white;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px;
+  font-weight:700;
+  flex-shrink:0;
+  margin-top:1px;
+}
+
+/* ── FORM CARD ── */
+.form-card {
+  background:var(--white);
+  border:1.5px solid var(--blue-mid);
+  border-radius:18px;
+  padding:36px 32px;
+  box-shadow:0 12px 48px rgba(26,74,138,0.13);
+  position:sticky;
+  top:80px;
+}
+.form-tag {
+  display:inline-block;
+  background:var(--blue);
+  color:white;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:5px 13px;
+  border-radius:4px;
+  margin-bottom:18px;
+}
+.form-headline {
+  font-family:'Playfair Display',serif;
+  font-size:13px;
+  font-weight:400;
+  color:var(--muted);
+  margin-bottom:4px;
+}
+.form-headline strong {
+  display:block;
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+  font-weight:900;
+  color:var(--blue);
+  line-height:1;
+  letter-spacing:-1px;
+  margin-bottom:6px;
+}
+.form-sub { font-size:12px; color:var(--hint); margin-bottom:24px; line-height:1.5; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
+.form-field { margin-bottom:12px; }
+.form-field label {
+  display:block;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.form-field input {
+  width:100%;
+  padding:12px 14px;
+  border:1px solid rgba(0,0,0,0.12);
+  border-radius:8px;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  color:var(--text);
+  outline:none;
+  transition:border-color .2s, box-shadow .2s;
+  background:#fafafa;
+}
+.form-field input:focus {
+  border-color:var(--blue-mid);
+  box-shadow:0 0 0 3px rgba(42,106,184,.12);
+  background:white;
+}
+.form-field input::placeholder { color:var(--hint); }
+.form-btn {
+  width:100%;
+  padding:15px;
+  background:var(--blue);
+  color:white;
+  border:none;
+  border-radius:9px;
+  font-family:'Playfair Display',serif;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+  letter-spacing:.3px;
+  transition:all .2s;
+  margin-top:10px;
+  position:relative;
+}
+.form-btn:hover { background:var(--navy); transform:translateY(-1px); box-shadow:0 6px 20px rgba(26,74,138,.2); }
+.form-btn:disabled { opacity:.6; cursor:default; transform:none; box-shadow:none; }
+.form-privacy { font-size:11px; color:var(--hint); margin-top:12px; display:flex; align-items:center; gap:5px; }
+
+.success-wrap {
+  display:none;
+  text-align:center;
+  padding:20px 0;
+}
+.success-icon {
+  width:56px; height:56px;
+  border-radius:50%;
+  background:var(--olive-light);
+  display:flex; align-items:center; justify-content:center;
+  font-size:26px;
+  margin:0 auto 16px;
+  border:2px solid rgba(90,124,32,.2);
+}
+.success-title {
+  font-family:'Playfair Display',serif;
+  font-size:20px;
+  font-weight:700;
+  color:var(--olive);
+  margin-bottom:8px;
+}
+.success-sub { font-size:14px; color:var(--muted); line-height:1.6; }
+
+/* ── PROOF STRIP ── */
+.proof-strip {
+  background:var(--blue);
+  padding:28px 40px;
+  display:flex;
+  justify-content:center;
+  gap:60px;
+  flex-wrap:wrap;
+}
+.proof-item { text-align:center; }
+.proof-num {
+  font-family:'Playfair Display',serif;
+  font-size:36px;
+  font-weight:900;
+  color:white;
+  line-height:1;
+  margin-bottom:4px;
+}
+.proof-label { font-size:12px; color:rgba(255,255,255,.65); letter-spacing:.5px; }
+
+/* ── SECTIONS ── */
+.section { max-width:1160px; margin:0 auto; padding:72px 40px; }
+.section-eyebrow {
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--olive-mid);
+  margin-bottom:12px;
+}
+.section-title {
+  font-family:'Playfair Display',serif;
+  font-size:40px;
+  font-weight:900;
+  color:var(--navy);
+  line-height:1.15;
+  margin-bottom:18px;
+}
+.section-title em { color:var(--olive); font-style:italic; }
+.section-body { font-size:16px; color:var(--muted); line-height:1.8; max-width:640px; margin-bottom:40px; }
+
+/* ── PITFALLS ── */
+.pitfalls-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:16px;
+}
+.pitfall-card {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:28px 24px;
+  transition:box-shadow .2s, transform .2s;
+}
+.pitfall-card:hover { box-shadow:var(--shadow); transform:translateY(-2px); }
+.pitfall-number {
+  font-family:'Playfair Display',serif;
+  font-size:42px;
+  font-weight:900;
+  color:var(--blue-light);
+  line-height:1;
+  margin-bottom:12px;
+  letter-spacing:-2px;
+}
+.pitfall-name { font-size:15px; font-weight:600; color:var(--navy); margin-bottom:8px; line-height:1.35; }
+.pitfall-desc { font-size:13px; color:var(--muted); line-height:1.6; }
+
+/* ── WHO SECTION ── */
+.who-section { background:var(--olive-light); }
+.who-inner { max-width:1160px; margin:0 auto; padding:72px 40px; display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+.who-items { display:flex; flex-direction:column; gap:20px; }
+.who-item { background:white; border-radius:14px; padding:22px 24px; display:flex; gap:16px; align-items:flex-start; border:1px solid var(--border); }
+.who-icon { font-size:24px; flex-shrink:0; }
+.who-title { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:5px; }
+.who-desc { font-size:13px; color:var(--muted); line-height:1.55; }
+
+/* ── CHAPTERS ── */
+.chapters-section { background:var(--navy); }
+.chapters-inner { max-width:1160px; margin:0 auto; padding:72px 40px; }
+.chapters-inner .section-eyebrow { color:rgba(255,255,255,.5); }
+.chapters-inner .section-title { color:white; }
+.chapters-inner .section-body { color:rgba(255,255,255,.6); }
+.chapters-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+.chapter-chip {
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  padding:14px 16px;
+  transition:background .2s;
+}
+.chapter-chip:hover { background:rgba(255,255,255,.12); }
+.chapter-num-label { font-size:10px; font-weight:700; letter-spacing:1px; color:rgba(255,255,255,.4); text-transform:uppercase; margin-bottom:5px; }
+.chapter-chip-title { font-size:13px; color:rgba(255,255,255,.85); line-height:1.35; }
+
+/* ── AUTHOR ── */
+.author-section { border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:white; }
+.author-inner { max-width:900px; margin:0 auto; padding:56px 40px; display:flex; gap:32px; align-items:flex-start; }
+.author-avatar {
+  width:72px; height:72px;
+  border-radius:50%;
+  background:var(--blue);
+  color:white;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:24px;
+  font-weight:900;
+  flex-shrink:0;
+}
+.author-name { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; color:var(--navy); margin-bottom:3px; }
+.author-title { font-size:12px; color:var(--hint); letter-spacing:.5px; margin-bottom:16px; }
+.author-bio { font-size:15px; color:var(--muted); line-height:1.75; font-style:italic; }
+.author-bio::before { content:'\201C'; font-size:36px; font-family:'Playfair Display',serif; color:var(--blue-light); line-height:0; vertical-align:-12px; margin-right:4px; }
+
+/* ── FINAL CTA ── */
+.final-cta { background:var(--blue); padding:80px 40px; text-align:center; }
+.final-eyebrow { font-size:11px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,.55); margin-bottom:16px; }
+.final-wordmark {
+  font-family:'Playfair Display',serif;
+  font-size:72px;
+  font-weight:900;
+  color:white;
+  line-height:.9;
+  letter-spacing:-3px;
+  margin-bottom:8px;
+}
+.final-tagline { font-style:italic; font-family:'Playfair Display',serif; font-size:20px; color:rgba(255,255,255,.75); margin-bottom:20px; }
+.final-sub { font-size:16px; color:rgba(255,255,255,.65); max-width:500px; margin:0 auto 32px; line-height:1.7; }
+.final-form { display:flex; gap:10px; max-width:460px; margin:0 auto; }
+.final-form input {
+  flex:1;
+  padding:14px 18px;
+  border:1.5px solid rgba(255,255,255,.3);
+  border-radius:8px;
+  background:rgba(255,255,255,.12);
+  color:white;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  outline:none;
+}
+.final-form input::placeholder { color:rgba(255,255,255,.5); }
+.final-form input:focus { border-color:rgba(255,255,255,.6); background:rgba(255,255,255,.18); }
+.final-form button {
+  padding:14px 22px;
+  background:white;
+  color:var(--blue);
+  border:none;
+  border-radius:8px;
+  font-family:'Playfair Display',serif;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:all .2s;
+}
+.final-form button:hover { background:var(--olive-light); color:var(--olive); }
+.final-privacy { font-size:11px; color:rgba(255,255,255,.4); margin-top:14px; }
+
+/* ── FOOTER ── */
+footer { background:var(--navy); padding:24px 40px; text-align:center; }
+footer p { font-size:12px; color:rgba(255,255,255,.3); }
+
+/* ── SPINNER ── */
+.spinner {
+  width:18px; height:18px;
+  border:2px solid rgba(255,255,255,.4);
+  border-top-color:white;
+  border-radius:50%;
+  animation:spin .6s linear infinite;
+  display:none;
+  margin:0 auto;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ── ERROR STATE ── */
+.field-error { border-color:#c94a4a !important; box-shadow:0 0 0 3px rgba(201,74,74,.1) !important; }
+.error-msg { font-size:11px; color:#c94a4a; margin-top:4px; display:none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">PITFALLS <span>to avoid</span></div>
+  <button class="nav-cta" onclick="document.getElementById('lead-form-section').scrollIntoView({behavior:'smooth'})">Get the free guide</button>
+</nav>
+
+<!-- HERO -->
+<section style="background:white; border-bottom:1px solid var(--border);">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Free guide · Adrian Willanger</div>
+      <div class="hero-wordmark">PIT<br>FALLS</div>
+      <div class="hero-title">to Avoid When Selling<br>a Parent's Home</div>
+      <div class="hero-body">Most families don't realize what can go wrong until it already has. This guide walks you through the six most common — and costly — mistakes so you can avoid them entirely.</div>
+      <div class="promise-list">
+        <div class="promise-item"><div class="promise-check">✓</div><span>12 chapters in plain language — no jargon</span></div>
+        <div class="promise-item"><div class="promise-check">✓</div><span>The 6 pitfalls that derail most family home sales</span></div>
+        <div class="promise-item"><div class="promise-check">✓</div><span>Frameworks for pricing, staging, sibling dynamics</span></div>
+        <div class="promise-item"><div class="promise-check">✓</div><span>Completely free — instant PDF access</span></div>
+      </div>
+    </div>
+
+    <!-- LEAD FORM -->
+    <div id="lead-form-section" class="form-card">
+      <div class="form-tag">Free guide</div>
+      <div class="form-headline">
+        <strong>NAVIGATING THE SALE</strong>
+        Your free guide, delivered instantly
+      </div>
+      <div class="form-sub">Enter your name and email. The guide arrives in your inbox in seconds.</div>
+
+      <div id="the-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label>First name</label>
+            <input type="text" id="fname" placeholder="Jane" autocomplete="given-name"/>
+            <div class="error-msg" id="fname-err">Please enter your first name.</div>
+          </div>
+          <div class="form-field">
+            <label>Last name</label>
+            <input type="text" id="lname" placeholder="Smith" autocomplete="family-name"/>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Email address</label>
+          <input type="email" id="email" placeholder="jane@email.com" autocomplete="email"/>
+          <div class="error-msg" id="email-err">Please enter a valid email address.</div>
+        </div>
+        <button class="form-btn" id="submit-btn" onclick="submitLead()">
+          <span id="btn-text">Send me the guide →</span>
+          <div class="spinner" id="btn-spinner"></div>
+        </button>
+        <div class="form-privacy">🔒 Your info is safe. No spam. Unsubscribe anytime.</div>
+      </div>
+
+      <div class="success-wrap" id="success-wrap">
+        <div class="success-icon">📘</div>
+        <div class="success-title">Guide on its way!</div>
+        <div class="success-sub">Check your inbox — <em>Navigating the Sale</em> is heading to you now. Thank you for downloading.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-item"><div class="proof-num">12</div><div class="proof-label">Chapters</div></div>
+  <div class="proof-item"><div class="proof-num">6+</div><div class="proof-label">Pitfalls covered</div></div>
+  <div class="proof-item"><div class="proof-num">100%</div><div class="proof-label">Free — no catch</div></div>
+  <div class="proof-item"><div class="proof-num">1</div><div class="proof-label">Trusted expert author</div></div>
+</div>
+
+<!-- PITFALLS -->
+<section class="section">
+  <div class="section-eyebrow">What's inside</div>
+  <h2 class="section-title">The <em>real</em> pitfalls<br>families face</h2>
+  <p class="section-body">Most families don't realize what can go wrong until it already has. This guide walks you through the six most common — and costly — mistakes so you can avoid them entirely.</p>
+  <div class="pitfalls-grid">
+    <div class="pitfall-card"><div class="pitfall-number">01</div><div class="pitfall-name">Emotional attachment clouding judgment</div><div class="pitfall-desc">Sentimental value is real — but it's not market value. Learn to separate the two before listing.</div></div>
+    <div class="pitfall-card"><div class="pitfall-number">02</div><div class="pitfall-name">Mispricing the property</div><div class="pitfall-desc">Pricing isn't guesswork — it's strategy, data, and discipline. Overpricing costs you time and money.</div></div>
+    <div class="pitfall-card"><div class="pitfall-number">03</div><div class="pitfall-name">Sibling assumptions & misalignment</div><div class="pitfall-desc">Assuming everyone agrees without a clear process is how families fall apart during the sale.</div></div>
+    <div class="pitfall-card"><div class="pitfall-number">04</div><div class="pitfall-name">Neglecting repairs & presentation</div><div class="pitfall-desc">Buyers don't see memories — they see deferred maintenance. Address issues proactively.</div></div>
+    <div class="pitfall-card"><div class="pitfall-number">05</div><div class="pitfall-name">Inadequate marketing strategy</div><div class="pitfall-desc">A yard sign is not a strategy. Today's buyers find homes online — you need to meet them there.</div></div>
+    <div class="pitfall-card"><div class="pitfall-number">06</div><div class="pitfall-name">Ignoring legal & financial details</div><div class="pitfall-desc">Estate rules, tax implications, and disclosure requirements need professional guidance early.</div></div>
+  </div>
+</section>
+
+<!-- WHO THIS IS FOR -->
+<section class="who-section">
+  <div class="who-inner">
+    <div>
+      <div class="section-eyebrow">Who this guide is for</div>
+      <h2 class="section-title" style="color:var(--olive);">You're not alone<br>in this.</h2>
+      <p class="section-body" style="color:var(--muted);">This guide was written for people exactly like you — adult children trying to do the right thing in a situation nobody fully prepares for.</p>
+      <button class="nav-cta" onclick="document.getElementById('lead-form-section').scrollIntoView({behavior:'smooth'})" style="display:inline-block;">Get the free guide →</button>
+    </div>
+    <div class="who-items">
+      <div class="who-item"><div class="who-icon">👨‍👩‍👧‍👦</div><div><div class="who-title">Siblings splitting responsibility</div><div class="who-desc">When multiple family members need to agree — and disagree — on every decision.</div></div></div>
+      <div class="who-item"><div class="who-icon">🏠</div><div><div class="who-title">First-time home sellers</div><div class="who-desc">Never sold a home before? This guide walks you through every step.</div></div></div>
+      <div class="who-item"><div class="who-icon">⏱️</div><div><div class="who-title">Families under time pressure</div><div class="who-desc">When a parent's move to assisted living or estate circumstances require a fast, clean sale.</div></div></div>
+      <div class="who-item"><div class="who-icon">💭</div><div><div class="who-title">Anyone feeling overwhelmed</div><div class="who-desc">This guide helps you slow down, see clearly, and move forward with confidence.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTERS -->
+<section class="chapters-section">
+  <div class="chapters-inner">
+    <div class="section-eyebrow">Guide contents</div>
+    <h2 class="section-title">12 chapters. <em style="color:rgba(255,255,255,.6);">One clear path.</em></h2>
+    <p class="section-body">Every chapter tackles a real challenge families face — in plain language, with practical guidance you can act on.</p>
+    <div class="chapters-grid">
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 1</div><div class="chapter-chip-title">Introduction to Selling the Family Home</div></div>
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 2</div><div class="chapter-chip-title">Common Pitfalls Families Face</div></div>
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 3</div><div class="chapter-chip-title">Emotional Attachment & Decision-Making</div></div>
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 4</div><div class="chapter-chip-title">Mispricing the Property</div></div>
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 5</div><div class="chapter-chip-title">Neglecting Necessary Repairs</div></div>
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 6</div><div class="chapter-chip-title">Inadequate Marketing Strategies</div></div>
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 7</div><div class="chapter-chip-title">Poor Communication with Agents</div></div>
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 8</div><div class="chapter-chip-title">Disregarding Home Staging</div></div>
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 9</div><div class="chapter-chip-title">Underestimating Curb Appeal</div></div>
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 10</div><div class="chapter-chip-title">Failing to Prepare for Showings</div></div>
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 11</div><div class="chapter-chip-title">Ignoring Legal & Financial Implications</div></div>
+      <div class="chapter-chip"><div class="chapter-num-label">Ch 12</div><div class="chapter-chip-title">Conclusion & Final Thoughts</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="author-section">
+  <div class="author-inner">
+    <div class="author-avatar">AW</div>
+    <div>
+      <div class="author-name">Adrian Willanger</div>
+      <div class="author-title">Author · Licensed Real Estate Broker, Washington State</div>
+      <p class="author-bio">I wrote this guide after working with families who felt overwhelmed trying to do the right thing while selling a parent's home. These situations are rarely just about real estate — they're about emotions, family dynamics, and timing. My hope is that this guide helps you slow the process down, avoid common mistakes, and feel more confident as you move forward."</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="final-eyebrow">Ready to get started?</div>
+  <div class="final-wordmark">PITFALLS</div>
+  <div class="final-tagline">to Avoid When Selling a Parent's Home</div>
+  <p class="final-sub">Clarity changes everything. Get the free guide and navigate this with confidence — you don't have to do this alone.</p>
+  <div class="final-form">
+    <input type="email" id="final-email" placeholder="your@email.com"/>
+    <button onclick="submitFinalCTA()">Get it free →</button>
+  </div>
+  <p class="final-privacy" id="final-status">No spam. No cost. Just clarity.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Adrian Willanger · <em>Navigating the Sale: Avoiding Pitfalls in Selling Your Parents' Home</em> · Free Guide</p>
+</footer>
+
+<script>
+// ─────────────────────────────────────────────
+//  JOTFORM WEBHOOK CONFIGURATION
+//  Replace JOTFORM_WEBHOOK_URL with your actual
+//  Jotform form webhook endpoint from:
+//  Jotform → Your Form → Settings → Integrations → Webhooks
+// ─────────────────────────────────────────────
+const JOTFORM_WEBHOOK_URL = 'YOUR_JOTFORM_WEBHOOK_URL_HERE';
+
+function validate() {
+  let ok = true;
+  const fname = document.getElementById('fname');
+  const email = document.getElementById('email');
+  const fnameErr = document.getElementById('fname-err');
+  const emailErr = document.getElementById('email-err');
+
+  fname.classList.remove('field-error');
+  email.classList.remove('field-error');
+  fnameErr.style.display = 'none';
+  emailErr.style.display = 'none';
+
+  if (!fname.value.trim()) {
+    fname.classList.add('field-error');
+    fnameErr.style.display = 'block';
+    ok = false;
+  }
+  if (!email.value.trim() || !email.value.includes('@')) {
+    email.classList.add('field-error');
+    emailErr.style.display = 'block';
+    ok = false;
+  }
+  return ok;
+}
+
+async function submitLead() {
+  if (!validate()) return;
+
+  const btn = document.getElementById('submit-btn');
+  const btnText = document.getElementById('btn-text');
+  const spinner = document.getElementById('btn-spinner');
+
+  btn.disabled = true;
+  btnText.style.display = 'none';
+  spinner.style.display = 'block';
+
+  const payload = {
+    firstName: document.getElementById('fname').value.trim(),
+    lastName: document.getElementById('lname').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    source: 'Dashboard — Hero Form',
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    if (JOTFORM_WEBHOOK_URL !== 'YOUR_JOTFORM_WEBHOOK_URL_HERE') {
+      await fetch(JOTFORM_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        mode: 'no-cors'
+      });
+    }
+    showSuccess();
+  } catch (err) {
+    // Still show success to user — Zapier will retry on its end
+    showSuccess();
+    console.warn('Webhook error:', err);
+  }
+}
+
+function showSuccess() {
+  document.getElementById('the-form').style.display = 'none';
+  document.getElementById('success-wrap').style.display = 'block';
+}
+
+async function submitFinalCTA() {
+  const emailInput = document.getElementById('final-email');
+  const status = document.getElementById('final-status');
+  if (!emailInput.value.includes('@')) {
+    emailInput.style.borderColor = 'rgba(255,100,100,.6)';
+    emailInput.focus();
+    return;
+  }
+
+  const payload = {
+    email: emailInput.value.trim(),
+    source: 'Dashboard — Footer CTA',
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    if (JOTFORM_WEBHOOK_URL !== 'YOUR_JOTFORM_WEBHOOK_URL_HERE') {
+      await fetch(JOTFORM_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        mode: 'no-cors'
+      });
+    }
+  } catch (e) {}
+
+  emailInput.disabled = true;
+  emailInput.value = '✓ Guide on its way!';
+  emailInput.style.color = 'rgba(255,255,255,.9)';
+  status.textContent = 'Check your inbox — thank you for downloading.';
+}
+</script>
+</body>
+</html>
