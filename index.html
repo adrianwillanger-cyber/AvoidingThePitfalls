@@ -464,21 +464,26 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
   </div>
 
   <!-- Embedded Jotform -->
-  <iframe
+  
+    <iframe
+      id="JotFormIFrame-261374974766069"
+      title="Pitfalls to Avoid When Selling a Parent's Home"
+      onload="window.parent.scrollTo(0,0)"
+      allowtransparency="true"
+      allow="geolocation; microphone; camera; fullscreen; payment"
+      src="https://form.jotform.com/261374974766069"
+      frameborder="0"
+      style="min-width:100%;max-width:100%;height:539px;border:none;"
+      scrolling="no"
+    >
+    </iframe>
+    <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+    <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261374974766069']", "https://form.jotform.com/")</script>
+    <iframe
     id="JotFormIFrame"
     src="https://form.jotform.com/26137497466069"
     style="width:100%; height:800px; border:none;"
-  ></iframe> </iframe>
-    <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
-    <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261374974766069']", "https://form.jotform.com/")</script>
-    /iframe>
-
-  <!-- Auto‑resize script -->
-  <script type="text/javascript">
-    window.addEventListener("message", function(e) {
-      if (typeof e.data === "object" && e.data.height) {
-        document.getElementById("JotFormIFrame").style.height = e.data.height + "px";
-      }
+  >
     });
   </script>
 </div>
