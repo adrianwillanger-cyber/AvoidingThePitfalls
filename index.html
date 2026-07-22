@@ -716,6 +716,20 @@ async function submitFinalCTA() {
     Thanks — your guide is on its way!
   </p>
 </section>
+<script>
+document.getElementById("lead-form").addEventListener("submit", async function(e) {
+  e.preventDefault(); // stops the page from reloading
+  const formData = new FormData(this);
+
+  // send data to Zapier
+  await fetch(this.action, { method: "POST", body: formData });
+
+  // show confirmation
+  alert("Thanks! Your guide is on its way.");
+});
+</script>
+</body>
+</html>
 
 </script>
 </body>
