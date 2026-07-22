@@ -260,7 +260,7 @@ body {
 }
 .proof-item { text-align:center; }
 .proof-num {
-  font-family:'Playfair Display',serif;
+  font-family:'Playfair Display',serif;  
   font-size:36px;
   font-weight:900;
   color:white;
@@ -451,7 +451,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
       </div>
     </div>
 
-    <!-- LEAD FORM -->
+  <!-- LEAD FORM -->
 <div id="lead-form-section" class="form-card">
   <div class="form-tag">Free guide</div>
   <div class="form-headline">
@@ -487,6 +487,20 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
 </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("lead-form");
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    await fetch(this.action, { method: "POST", body: formData });
+    document.getElementById("btn-text").textContent = "✓ Guide on its way!";
+    this.reset();
+  });
+});
+</script>
+  
+      
+
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById("lead-form");
   const btnText = document.getElementById("btn-text");
