@@ -462,30 +462,31 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
     Enter your name and email. The guide arrives in your inbox in seconds.
   </div>
 
-  <form id="lead-form" action="https://hooks.zapier.com/hooks/catch/4335869/44ijmyo/" method="POST">
-    <div class="form-row">
-      <div class="form-field">
-        <label for="fname">First name</label>
-        <input type="text" id="fname" name="fname" placeholder="Jane" autocomplete="given-name" required />
-      </div>
-      <div class="form-field">
-        <label for="lname">Last name</label>
-        <input type="text" id="lname" name="lname" placeholder="Smith" autocomplete="family-name" required />
-      </div>
-    </div>
+  <!-- LEAD FORM -->
+<div id="lead-form-section" class="form-card">
+  <div class="form-tag">Free guide</div>
 
-    <div class="form-field">
-      <label for="email">Email address</label>
-      <input type="email" id="email" name="email" placeholder="jane@email.com" autocomplete="email" required />
-    </div>
+  <div class="form-headline">
+    <strong>NAVIGATING THE SALE</strong>
+    Your free guide, delivered instantly
+  </div>
 
-    <button type="submit" class="form-btn" id="submit-btn">
-      <span id="btn-text">Send me the guide →</span>
-      <div class="spinner" id="btn-spinner"></div>
-    </button>
-  </form>
+  <div class="form-sub">
+    Enter your name and email. The guide arrives in your inbox in seconds.
+  </div>
+
+  <!-- JOTFORM IFRAME REPLACES YOUR OLD FORM + SCRIPT -->
+  <iframe
+    id="JotFormIFrame"
+    title="Pitfalls to Avoid When Selling a Parent's Home"
+    allowtransparency="true"
+    allowfullscreen="true"
+    allow="geolocation; microphone; camera"
+    src="https://form.jotform.com/YOUR_FORM_ID"
+    frameborder="0"
+    style="width:100%; height:800px; border:none;"
+  ></iframe>
 </div>
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById("lead-form");
