@@ -452,41 +452,53 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
     </div>
 
     <!-- LEAD FORM -->
-    <div id="lead-form-section" class="form-card">
-      <div class="form-tag">Free guide</div>
-      <div class="form-headline">
-        <strong>NAVIGATING THE SALE</strong>
-        Your free guide, delivered instantly
-      </div>
-      <div class="form-sub">Enter your name and email. The guide arrives in your inbox in seconds.</div>
+<div id="lead-form-section" class="form-card">
+  <div class="form-tag">Free guide</div>
+  <div class="form-headline">
+    <strong>NAVIGATING THE SALE</strong>
+    Your free guide, delivered instantly
+  </div>
+  <div class="form-sub">
+    Enter your name and email. The guide arrives in your inbox in seconds.
+  </div>
 
-      <div id="the-form">
-        <div class="form-row">
-          <div class="form-field">
-            <label>First name</label>
-            <input type="text" id="fname" placeholder="Jane" autocomplete="given-name"/>
-            <div class="error-msg" id="fname-err">Please enter your first name.</div>
-          </div>
-          <div class="form-field">
-            <label>Last name</label>
-            <input type="text" id="lname" placeholder="Smith" autocomplete="family-name"/>
-          </div>
-        </div>
-        <div class="form-field">
-          <label>Email address</label>
-          <input type="email" id="email" placeholder="jane@email.com" autocomplete="email"/>
-          <div class="error-msg" id="email-err">Please enter a valid email address.</div>
-        </div>
-       </div>
-        <script>
-document.getElementById("lead-form").addEventListener("submit", async function(e) {
-  e.preventDefault();
-  const formData = new FormData(this);
-  await fetch(this.action, { method: "POST", body: formData });
-  document.getElementById("btn-text").textContent = "✓ Guide on its way!";
-  this.reset();
+  <form id="lead-form" action="https://hooks.zapier.com/hooks/catch/4335869/44ijmyo/" method="POST">
+    <div class="form-row">
+      <div class="form-field">
+        <label for="fname">First name</label>
+        <input type="text" id="fname" name="fname" placeholder="Jane" autocomplete="given-name" required />
+      </div>
+      <div class="form-field">
+        <label for="lname">Last name</label>
+        <input type="text" id="lname" name="lname" placeholder="Smith" autocomplete="family-name" required />
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" placeholder="jane@email.com" autocomplete="email" required />
+    </div>
+
+    <button type="submit" class="form-btn" id="submit-btn">
+      <span id="btn-text">Send me the guide →</span>
+      <div class="spinner" id="btn-spinner"></div>
+    </button>
+  </form>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("lead-form");
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    await fetch(this.action, { method: "POST", body: formData });
+    document.getElementById("btn-text").textContent = "✓ Guide on its way!";
+    this.reset();
+  });
 });
-</s
+</script>
+
 
 
        <button type="submit" class="form-btn" id="submit-btn">
