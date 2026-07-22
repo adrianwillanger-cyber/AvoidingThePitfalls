@@ -693,6 +693,30 @@ async function submitFinalCTA() {
   emailInput.style.color = 'rgba(255,255,255,.9)';
   status.textContent = 'Check your inbox — thank you for downloading.';
 }
+  <!-- Lead capture form -->
+<section class="lead-offer">
+  <h2>Avoiding the Pitfalls: Your Free Guide</h2>
+  <p>Enter your name and email below and I’ll send the guide instantly.</p>
+
+  <form id="lead-form" action="https://hooks.zapier.com/hooks/catch/XXXXXXX/XXXXXXX/" method="POST">
+    <div class="form-field">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+    </div>
+
+    <div class="form-field">
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+    </div>
+
+    <button type="submit" class="submit-btn">Send me the guide →</button>
+  </form>
+
+  <p id="success-message" style="display:none; margin-top: 1rem; font-weight: 600;">
+    Thanks — your guide is on its way!
+  </p>
+</section>
+
 </script>
 </body>
 </html>
