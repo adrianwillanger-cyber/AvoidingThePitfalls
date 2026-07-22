@@ -489,15 +489,26 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById("lead-form");
+  const btnText = document.getElementById("btn-text");
+
   form.addEventListener("submit", async function(e) {
     e.preventDefault();
     const formData = new FormData(this);
+
+    // show spinner while sending
+    btnText.textContent = "Sending...";
+    document.getElementById("btn-spinner").style.display = "inline-block";
+
     await fetch(this.action, { method: "POST", body: formData });
-    document.getElementById("btn-text").textContent = "✓ Guide on its way!";
+
+    // hide spinner and show success
+    document.getElementById("btn-spinner").style.display = "none";
+    btnText.textContent = "✓ Guide on its way!";
     this.reset();
   });
 });
 </script>
+
 
 
 
