@@ -473,20 +473,24 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
 
   <div class="form-sub">
     Enter your name and email. The guide arrives in your inbox in seconds.
+  <div id="lead-form-section" class="form-card">
+  <div class="form-tag">Free guide</div>
+  <div class="form-headline">
+    <strong>NAVIGATING THE SALE</strong>
+    Your free guide, delivered instantly
+  </div>
+  <div class="form-sub">
+    Enter your name and email. The guide arrives in your inbox in seconds.
   </div>
 
-  <!-- JOTFORM IFRAME REPLACES YOUR OLD FORM + SCRIPT -->
+  <!-- Embedded Jotform -->
   <iframe
     id="JotFormIFrame"
-    title="Pitfalls to Avoid When Selling a Parent's Home"
-    allowtransparency="true"
-    allowfullscreen="true"
-    allow="geolocation; microphone; camera"
-    src="https://form.jotform.com/YOUR_FORM_ID"
-    frameborder="0"
+    src="https://form.jotform.com/26137497466069"
     style="width:100%; height:800px; border:none;"
   ></iframe>
 </div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById("lead-form");
