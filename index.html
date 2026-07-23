@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -260,7 +260,7 @@ body {
 }
 .proof-item { text-align:center; }
 .proof-num {
-  font-family:'Playfair Display',serif;  
+  font-family:'Playfair Display',serif;
   font-size:36px;
   font-weight:900;
   color:white;
@@ -450,58 +450,34 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
         <div class="promise-item"><div class="promise-check">✓</div><span>Completely free — instant PDF access</span></div>
       </div>
     </div>
- 
-</script>  
- <!-- LEAD FORM -->
-<div id="lead-form-section" class="form-card">
-  <div class="form-tag">Free guide</div>
-  <div class="form-headline">
-    <strong>NAVIGATING THE SALE</strong>
-    Your free guide, delivered instantly
-  </div>
-  <div class="form-sub">
-    Enter your name and email. The guide arrives in your inbox in seconds.
-  </div>
 
-  <!-- Embedded Jotform -->
-  
-    <iframe
-      id="JotFormIFrame-261374974766069"
-      title="Pitfalls to Avoid When Selling a Parent's Home"
-      onload="window.parent.scrollTo(0,0)"
-      allowtransparency="true"
-      allow="geolocation; microphone; camera; fullscreen; payment"
-      src="https://form.jotform.com/261374974766069"
-      frameborder="0"
-      style="min-width:100%;max-width:100%;height:539px;border:none;"
-      scrolling="no"
-    >
-    </iframe>
-    <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
-    <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261374974766069']", "https://form.jotform.com/")</script>
-    <iframe
-    id="JotFormIFrame"
-    src="https://form.jotform.com/26137497466069"
-    style="width:100%; height:800px; border:none;"
-  >
-    });
-  </script>
-</div>
-  
-
-       <button type="submit" class="form-btn" id="submit-btn">
-  <span id="btn-text">Send me the guide →</span>
-  <div class="spinner" id="btn-spinner"></div>
-</button>
- 
-        <div class="form-privacy">🔒 Your info is safe. No spam. Unsubscribe anytime.</div>
+    <!-- LEAD FORM -->
+    <div id="lead-form-section" class="form-card">
+      <div class="form-tag">Free guide</div>
+      <div class="form-headline">
+        <strong>NAVIGATING THE SALE</strong>
+        Your free guide, delivered instantly
+      </div>
+      <div class="form-sub">
+        Enter your name and email. The guide arrives in your inbox in seconds.
       </div>
 
-      <div class="success-wrap" id="success-wrap">
-        <div class="success-icon">📘</div>
-        <div class="success-title">Guide on its way!</div>
-        <div class="success-sub">Check your inbox — <em>Navigating the Sale</em> is heading to you now. Thank you for downloading.</div>
-      </div>
+      <!-- Embedded Jotform -->
+      <iframe
+        id="JotFormIFrame-261374974766069"
+        title="Pitfalls to Avoid When Selling a Parent's Home"
+        onload="window.parent.scrollTo(0,0)"
+        allowtransparency="true"
+        allow="geolocation; microphone; camera; fullscreen; payment"
+        src="https://form.jotform.com/261374974766069"
+        frameborder="0"
+        style="min-width:100%;max-width:100%;height:539px;border:none;"
+        scrolling="no"
+      ></iframe>
+      <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+      <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-261374974766069']", "https://form.jotform.com/")</script>
+
+      <div class="form-privacy">🔒 Your info is safe. No spam. Unsubscribe anytime.</div>
     </div>
   </div>
 </section>
@@ -588,52 +564,13 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
   <div class="final-wordmark">PITFALLS</div>
   <div class="final-tagline">to Avoid When Selling a Parent's Home</div>
   <p class="final-sub">Clarity changes everything. Get the free guide and navigate this with confidence — you don't have to do this alone.</p>
-  <div class="final-form">
-    <input type="email" id="final-email" placeholder="your@email.com"/>
-    <button onclick="submitFinalCTA()">Get it free →</button>
-  </div>
-  <p class="final-privacy" id="final-status">No spam. No cost. Just clarity.</p>
+  <button class="nav-cta" style="background:white;color:var(--blue);border-color:white;display:inline-block;" onclick="document.getElementById('lead-form-section').scrollIntoView({behavior:'smooth'})">Get it free →</button>
+  <p class="final-privacy">No spam. No cost. Just clarity.</p>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <p>© 2026 Adrian Willanger · <em>Navigating the Sale: Avoiding Pitfalls in Selling Your Parents' Home</em> · Free Guide</p>
 </footer>
-  <!-- Lead capture form -->
-<section class="lead-offer">
-  <h2>Avoiding the Pitfalls: Your Free Guide</h2>
-  <p>Enter your name and email below and I’ll send the guide instantly.</p>
-
-  <form id="lead-form" action="https://hooks.zapier.com/hooks/catch/4335869/44ijmyo/" method="POST">
-    <div class="form-field">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" placeholder="Your Name" required>
-    </div>
-
-    <div class="form-field">
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" placeholder="you@example.com" required>
-    </div>
-
-    <button type="submit" class="submit-btn">Send me the guide →</button>
-  </form>
-
-  <p id="success-message" style="display:none; margin-top: 1rem; font-weight: 600;">
-    Thanks — your guide is on its way!
-  </p>
-</section>
-<script>
-document.getElementById("lead-form").addEventListener("submit", async function(e) {
-  e.preventDefault(); // stops the page from reloading
-  const formData = new FormData(this);
-
-  // send data to Zapier
-  await fetch(this.action, { method: "POST", body: formData });
-
-  // show confirmation
-  alert("Thanks! Your guide is on its way.");
-});
-</script>
 </body>
 </html>
-
